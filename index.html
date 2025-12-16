@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Shop</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">🛍️</span>
+      <div>
+        <h1>Simple Shop</h1>
+        <p>E-commerce demo with cart, CRUD, billing, and reports</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button id="printBillBtn" class="secondary">Print Bill</button>
+      <button id="clearCartBtn" class="danger">Clear Cart</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel" id="catalogSection">
+      <div class="panel-head">
+        <h2>Catalog</h2>
+        <span class="muted">Click add to cart to bill items</span>
+      </div>
+      <div id="productsGrid" class="grid"></div>
+    </section>
+
+    <section class="panel" id="crudSection">
+      <div class="panel-head">
+        <h2>Product Manager</h2>
+        <span class="muted">Create, update, or delete products</span>
+      </div>
+      <form id="productForm" class="form">
+        <input type="hidden" id="productId">
+        <div class="field">
+          <label for="productName">Name</label>
+          <input id="productName" required maxlength="40" placeholder="T-Shirt">
+        </div>
+        <div class="field">
+          <label for="productCategory">Category</label>
+          <input id="productCategory" required maxlength="30" placeholder="Clothes">
+        </div>
+        <div class="field two-col">
+          <div>
+            <label for="productPrice">Price</label>
+            <input id="productPrice" type="number" min="0" step="0.01" required placeholder="19.99">
+          </div>
+          <div>
+            <label for="productStock">Stock</label>
+            <input id="productStock" type="number" min="0" step="1" required placeholder="20">
+          </div>
+        </div>
+        <div class="field">
+          <label for="productImage">Image URL</label>
+          <input id="productImage" type="url" required placeholder="https://.../shirt.png">
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="primary" id="saveProductBtn">Save</button>
+          <button type="reset" class="secondary" id="resetProductBtn">Reset</button>
+          <button type="button" class="danger" id="deleteProductBtn">Delete</button>
+        </div>
+        <p id="formStatus" class="status"></p>
+      </form>
+      <div id="productList" class="list"></div>
+    </section>
+
+    <section class="panel" id="cartSection">
+      <div class="panel-head">
+        <h2>Cart & Billing</h2>
+        <span class="muted">Review items, totals, pay, and print bill</span>
+      </div>
+      <div class="cart-wrap">
+        <table class="table" id="cartTable">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Qty</th>
+              <th>Price</th>
+              <th>Total</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div class="totals" id="totalsBox">
+          <div class="row">
+            <span>Subtotal</span><span id="subtotalValue">$0.00</span>
+          </div>
+          <div class="row total">
+            <span>Grand Total</span><span id="grandTotalValue">$0.00</span>
+          </div>
+          <button id="payNowBtn" class="primary full">Pay Now</button>
+          <div class="qr-box">
+            <img id="upiQr" alt="UPI QR" />
+            <p class="muted small">Scan to pay via UPI</p>
+          </div>
+        </div>
+      </div>
+      <div id="billArea" class="bill">
+        <h3>Bill</h3>
+        <div id="billContent"></div>
+      </div>
+    </section>
+
+    <section class="panel" id="reportSection">
+      <div class="panel-head">
+        <h2>Monthly Sales Report</h2>
+        <span class="muted">Summarize orders by month</span>
+      </div>
+      <div class="report-controls">
+        <label for="reportMonth">Select month</label>
+        <input id="reportMonth" type="month">
+      </div>
+      <div id="reportSummary" class="report"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Static demo. Data stored locally in your browser.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
